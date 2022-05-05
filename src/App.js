@@ -1,25 +1,23 @@
 import Products from './Components/Products';
 import data from './Rservices/Productsservice'
 import './App.css';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Cart from './Components/Cart';
+import { CartProvider } from './provider/CartProvider';
+import { Checkout } from './pages/Checkout';
 
 
 function App() {
-  const {products} = data;
 
   return (
     <BrowserRouter>
-    <div className="App">
-      <div>
-        <Route exact path='/'>
-        <Products products={products}/> 
-        </Route>
-        <Route path='/cart'>
-          <Cart />
-        </Route>
-      </div>
-    </div>
+      <CartProvider>
+        <Routes>
+          <Route exact path='/' element={<Products products={data.products}/>}/>
+          <Route path='/cart' element={<Cart />}/>
+          <Route path='/checkout' element={<Checkout />}/>
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   );
 }

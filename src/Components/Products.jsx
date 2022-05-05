@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useCart } from "../provider/CartProvider";
+import { Navbar } from "./Navbar";
 import Product from './Product';
 
-export default function Products(props){
-    const {products, onAdd}=props;
+export default function Products({products}){
+    const { addToCart } = useCart();
+
+    const addCart = (product) =>{
+        addToCart(product);
+    }
 
     return(
         <main>
-            <h1>Products</h1>
+            <Navbar />
+            <h1>Teen and Adults Heels</h1>
             <div>
                 {products.map((product)=>(
-                    <Product key={product.id} onAdd={onAdd} product={product}/>
+                    <Product key={product.id} onAdd={addCart} product={product}/>
                 ))}
             </div>
         </main>

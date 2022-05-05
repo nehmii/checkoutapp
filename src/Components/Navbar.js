@@ -9,10 +9,19 @@ export const Navbar = () =>{
     const { cart } = useCart();
 
     const navigate = useNavigate();
+    const myOptions = [
+        {
+            title: 'hello world',
+            action: ()=> alert('hello this  is a test')
+        },{
+            title: 'To cart',
+            action: ()=> navigate('/cart')
+        },
+    ]
 
     return(
         <nav>
-            <BiMenu />
+            <Menu options={myOptions} />
             <label onClick={()=>navigate('/checkout')}>Checkout</label>
             <span>
                 <BsFillCartPlusFill onClick={()=>navigate('/cart')} />
